@@ -1,0 +1,87 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+
+      <div class="page-bar">
+          <div class="page-title-breadcrumb">
+              <div class=" pull-left">
+                  <div class="page-title mt-4">Propert Details</div>
+              </div>
+
+              <ol class="breadcrumb page-breadcrumb pull-right">
+                  <li><a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                  </li>
+                  <li class="active">Property Details</li>
+              </ol>
+          </div>
+      </div>
+      <!-- start widget -->
+      <div class="state-overview">
+          <div class="row">
+              <div class="col-xl-12 col-md-6 col-12">
+                  <div class="info-box ">
+                      <div class="row paddings">
+                        <div *ngIf="propertyDetails?.property_images.length==0" class="col-12 d-flex align-items-center justify-content-center" style="background-image:url(assets/img/b1.jpg);background-size:cover;border-radius: 25px;height:350px;background-position: center;">
+                          <span class="villa">{{propertyDetails?.property_name | titlecase}}</span>
+                      </div>
+                          <div *ngIf="propertyDetails?.property_images.length>0" class="col-12 d-flex align-items-center justify-content-center" style="background-image:url({{propertyDetails?.property_image_path}}{{propertyDetails?.property_images[0].image_name}});background-size:cover;border-radius: 25px;height:350px;background-position: center;">
+                              <span class="villa">{{propertyDetails?.property_name | titlecase}}</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      <!-- end widget -->
+      <!-- chart start -->
+
+      <!-- start Payment Details -->
+      <div class="row">
+          <div class="col-md-12 col-sm-12">
+              <div class="card  card-box shadow">
+                  <div class="card-head">
+                      <header>Property Details</header>
+                  </div>
+                  <div class="card-body">
+                     <div class="row">
+                      <div class="col-4"><b>Property Name</b></div>
+                      <div class="col-8">{{propertyDetails?.property_name | titlecase}}</div>
+                     </div>
+                     <div class="row">
+                      <div class="col-4"><b>Property Type</b></div>
+                      <div class="col-8">{{propertyDetails?.property_type}}</div>
+                     </div>
+                     <div class="row">
+                      <div class="col-4"><b>Telephone</b></div>
+                      <div class="col-8">{{propertyDetails?.property_phone }}</div>
+                     </div>
+                     <div class="row">
+                      <div class="col-4"><b>Location</b></div>
+                      <div class="col-8">{{propertyDetails?.property_address | titlecase }}</div>
+                     </div>
+                     <div class="row mt-4">
+                      <div class="col-md-12">
+                        <button class="btn btn-primary" routerLink="/app/room-list/{{propertyDetails?.property_uid}}">View Rooms</button>
+                      </div>
+                     </div>
+                     <div class="row mt-4">
+                      <div class="col-md-4" *ngFor="let item of propertyDetails?.property_images; let i=index">
+                        <div class="card">
+                          <div class="card-body">
+                            <img *ngIf="propertyDetails?.property_images.length==0" src="assets/img/b1.jpg" alt="{{i}}" style="height:240px;width: -webkit-fill-available">
+                            <img *ngIf="propertyDetails?.property_images.length>0" src="{{propertyDetails?.property_image_path}}{{item.image_name}}" alt="{{i}}" style="height:240px;width: -webkit-fill-available">
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+
+                  </div>
+
+              </div>
+          </div>
+      </div>
+
+
+
+  </div>
+</div>

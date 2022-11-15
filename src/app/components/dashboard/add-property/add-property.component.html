@@ -1,0 +1,94 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">Add Property Details</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><a class="parent-item"
+              href="index.html">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+
+          <li class="active">Add Property Details</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-box">
+          <div class="card-head">
+            <header>Add Property Details</header>
+            <button id="panel-button"
+              class="mdl-button mdl-js-button mdl-button--icon pull-right"
+              data-upgraded=",MaterialButton">
+              <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+              data-mdl-for="panel-button">
+              <li class="mdl-menu__item"><i class="material-icons">assistant_photo</i>Action
+              </li>
+              <li class="mdl-menu__item"><i class="material-icons">print</i>Another action
+              </li>
+              <li class="mdl-menu__item"><i class="material-icons">favorite</i>Something else
+                here</li>
+            </ul>
+          </div>
+          <form [formGroup]="checkoutForm">
+            <div class="card-body row">
+              <div class="col-lg-6 p-t-20">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingInput" formControlName="name">
+                  <label for="floatingInput">Property Name <span style="color: red;">*</span></label>
+                </div>
+              </div>
+              <div class="col-lg-6 p-t-20">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelectGrid" formControlName="type">
+                    <option  value="Single">
+                      Single
+                    </option>
+                    <option  value="Double">Double</option>
+                    <option  value="Quad">Quad</option>
+                    <option  value="King">King</option>
+                    <option  value="Suite">Suite</option>
+                    <option  value="Apartments">Apartments</option>
+                    <option  value="Villa">Villa</option>
+                  </select>
+                  <label for="floatingSelectGrid">Property Type <span style="color: red;">*</span></label>
+                </div>
+              </div>
+              <div class="col-lg-6 p-t-20">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingInput2" formControlName="phone"
+                  [specialCharacters]="[ '\-' ]" mask="000-000-0000">
+                  <label for="floatingInput2">Telephone Number <span style="color: red;">*</span></label>
+                </div>
+              </div>
+              <div class="col-lg-6 p-t-20">
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" rows="4" id="floatingInput3" formControlName="location"></textarea>
+                  <label for="floatingInput3">Property Location <span style="color: red;">*</span></label>
+                </div>
+              </div>
+              <div class="col-lg-12 p-t-20">
+                <ngx-dropzone (change)="onSelect($event)">
+                  <ngx-dropzone-label>Upload Propert Photos</ngx-dropzone-label>
+                  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-preview>
+                </ngx-dropzone>
+              </div>
+              <div class="col-lg-12 p-t-20 text-center">
+                <button type="button" (click)="submit()"
+                  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>
+                <button type="button" routerLink="/app/property-list"
+                  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+              </div>
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

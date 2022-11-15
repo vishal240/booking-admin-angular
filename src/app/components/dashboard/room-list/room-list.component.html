@@ -1,0 +1,111 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">All Rooms</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+
+          <li class="active">All Rooms</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-box">
+          <div class="card-head">
+            <header>All Rooms</header>
+            <div class="tools">
+              <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+              <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+              <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+            </div>
+          </div>
+          <div class="card-body ">
+            <div class="row p-b-20">
+              <div class="col-md-6 col-sm-6 col-6">
+                <div class="btn-group">
+                  <a routerLink="/app/add-room/{{property_uid}}" id="addRow" class="btn btn-info">
+                    Add New <i class="fa fa-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" *ngIf="propertyList.length==0">
+                <p>Records not found</p>
+              </div>
+            </div>
+            <div class="table-scrollable" *ngIf="propertyList.length>0">
+
+              <table class="table table-hover table-checkable order-column full-width"
+                id="example4" >
+                <thead>
+                  <tr>
+                    <!-- <th class="center"> img </th> -->
+                    <th class="center"> # </th>
+                    <th class="center"> Type </th>
+                    <th class="center"> AC/Non AC </th>
+                    <th class="center"> Meal </th>
+                    <th class="center"> Bad Capacity </th>
+                    <th class="center"> Phone </th>
+                    <th class="center"> Rent </th>
+                    <th class="center"> Status </th>
+                    <th class="center"> Action </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="odd gradeX" *ngFor="let item of propertyList; let i=index">
+                    <!-- <td class="user-circle-img">
+                      <img *ngIf="item.images.length==0" style="height: 30px;" src="assets/img/user.png" alt="{{i}}">
+                      <img *ngIf="item.images.length>0" style="height: 30px;" src="https://estate.friendswebsolutions.com/api/uploads/room/{{item.images[0].image_name}}" alt="{{i}}">
+                    </td> -->
+                    <td class="center">{{item.room_number}}</td>
+                    <td class="center">{{item.room_type}}</td>
+                    <td class="center" *ngIf="item.is_ac_room=='no'">Non A/C</td>
+                    <td class="center" *ngIf="item.is_ac_room=='yes'">A/C</td>
+                    <td class="center">
+                      <p *ngIf="item.amenities.length>0">
+                        <span *ngFor="let it of item.amenities; let n=index">
+                          {{it.amenity | titlecase}} &nbsp;
+                        </span>
+                      </p>
+                      <p *ngIf="item.amenities.length==0">
+                          N/A
+                      </p>
+                    </td>
+                    <td class="center">{{item.room_bedcapacity}}</td>
+                    <td class="center">{{item.room_phone}}</td>
+                    <td class="center">{{item.room_charge}}</td>
+                    <td class="center">
+                      <button *ngIf="item.room_status=='1'" (click)="inactive(item.room_uid)" class="btn btn-primary" >Active</button>
+                      <button *ngIf="item.room_status=='0'" (click)="activate(item.room_uid)" class="btn btn-danger" >Inactive</button>
+                    </td>
+                    <td class="center">
+                      <a routerLink="/app/edit-room/{{property_uid}}/{{item.room_uid}}" class="btn btn-tbl-edit btn-xs">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                      <a class="btn btn-tbl-delete btn-xs" (click)="deleteProperty(item.room_uid)">
+                        <i class="fa fa-trash-o "></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <app-pagination [totalRecords]="totalPages" [recordsPerPage]="10"
+              (onPageChange)="displayActivePage($event)">
+        </app-pagination>
+      </div>
+    </div>
+  </div>
+</div>

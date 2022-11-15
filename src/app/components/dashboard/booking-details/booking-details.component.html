@@ -1,0 +1,172 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+
+      <div class="page-bar">
+          <div class="page-title-breadcrumb">
+              <div class=" pull-left">
+                  <div class="page-title mt-4">{{propertyDetails?.property_name | titlecase}}</div>
+              </div>
+
+              <ol class="breadcrumb page-breadcrumb pull-right">
+                  <li><a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                  </li>
+                  <li class="active">{{propertyDetails?.property_name | titlecase}}</li>
+              </ol>
+          </div>
+      </div>
+      <!-- start widget -->
+      <div class="state-overview">
+          <div class="row">
+              <div class="col-xl-12 col-md-6 col-12">
+                  <div class="info-box ">
+                      <div class="row paddings">
+                          <div *ngIf="propertyDetails?.property_images.length==0" class="col-12 d-flex align-items-center justify-content-center" style="background-image:url(assets/img/b1.jpg);background-size:cover;border-radius: 25px;height:350px;background-position: center;">
+                              <span class="villa">{{propertyDetails?.property_name | titlecase}}</span>
+                          </div>
+                          <div *ngIf="propertyDetails?.property_images.length>0" class="col-12 d-flex align-items-center justify-content-center" style="background-image:url({{propertyDetails?.property_image_path}}{{propertyDetails?.property_images[0].image_name}});background-size:cover;border-radius: 25px;height:350px;background-position: center;">
+                            <span class="villa">{{propertyDetails?.property_name | titlecase}}</span>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      <!-- end widget -->
+      <!-- chart start -->
+
+      <!-- start Payment Details -->
+      <div class="row">
+          <div class="col-md-12 col-sm-12">
+              <div class="card  card-box shadow">
+                  <div class="card-head">
+                      <header>Check Availablity</header>
+                  </div>
+                  <div class="card-body">
+                    <form [formGroup]="checkoutForm">
+                      <div class="row">
+                        <div class="col-lg-3 p-t-20">
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" formControlName="check_in2" id="floatingInput" [minDate]="minDate" bsDatepicker [bsConfig]="bsConfig">
+                            <label for="floatingInput">Check In <span style="color: red;">*</span></label>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 p-t-20">
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" bsDatepicker [bsConfig]="bsConfig" [minDate]="minDate" formControlName="check_out2" id="floatingInput2">
+                            <label for="floatingInput2">Check Out <span style="color: red;">*</span></label>
+                          </div>
+                        </div>
+                        <div class="col-lg-2 p-t-20">
+                          <div class="form-floating">
+                            <select class="form-select" id="floatingSelectGrid3" formControlName="adults">
+                              <option  value="1">1</option>
+                              <option  value="2">2</option>
+                              <option  value="3">3</option>
+                              <option  value="4">4</option>
+                              <option  value="5">5</option>
+                              <option  value="6">6</option>
+                              <option  value="7">7</option>
+                            </select>
+                            <label for="floatingSelectGrid3">Adult <span style="color: red;">*</span></label>
+                          </div>
+                        </div>
+                        <div class="col-lg-2 p-t-20">
+                          <div class="form-floating">
+                            <select class="form-select" id="floatingSelectGrid4" formControlName="children">
+                              <option  value="1">1</option>
+                              <option  value="2">2</option>
+                              <option  value="3">3</option>
+                              <option  value="4">4</option>
+                              <option  value="5">5</option>
+                              <option  value="6">6</option>
+                              <option  value="7">7</option>
+                            </select>
+                            <label for="floatingSelectGrid4">Children <span style="color: red;">*</span></label>
+                          </div>
+                        </div>
+                        <div class="col-lg-2 p-t-20">
+                          <div class="form-floating">
+                            <select class="form-select" id="floatingSelectGrid3" formControlName="room_type">
+                              <option  value="1">A/C</option>
+                              <option  value="2">Non A/C</option>
+                            </select>
+                            <label for="floatingSelectGrid3">Room Type <span style="color: red;">*</span></label>
+                          </div>
+                        </div>
+                        <div class="col-lg-3 mt-3">
+                            <button class="add-booking" (click)="submit()" >Check</button>
+                        </div>
+                    </div>
+                    </form>
+
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <div class="row" *ngIf="roomDetails.length==0">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <b>Records not found.</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="roomDetails.length>0">
+          <div class="col-12">
+              <div class="card  card-box shadow">
+                  <div class="card-body">
+                      <div class="row">
+
+                          <div class="table-scrollable">
+                              <table class="table table-hover table-checkable order-column full-width" id="example4">
+                                  <thead>
+                                          <tr>
+                                              <th>Select</th>
+                                              <th>Room No</th>
+                                              <th>Room Type</th>
+                                              <th>Bed capacity</th>
+                                              <th>Amenities</th>
+                                              <th>Price</th>
+                                              <th>Extra Bed</th>
+                                              <th>Extra Bed Charges</th>
+                                              <th>Total</th>
+
+                                          </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let item of roomDetails; let i=index">
+                                          <td>
+                                              <input type="checkbox" style="height: 25px;width:20px;" (change)="addData($event, item, item.room_uid
+                                              )">
+                                            </td>
+                                          <td>{{item.room_number}}</td>
+                                          <td>{{item.room_type | titlecase}}</td>
+                                          <td>{{item.room_bedcapacity}}</td>
+                                          <td>{{item.amenities}}</td>
+                                          <td>₹ {{item.room_charge}}/-</td>
+                                          <td><input type="number" (change)="addExtraBed($event, i)" value="{{item.extra_bed}}" style="width: 60px;border-style: groove;" min="0"></td>
+                                          <td>₹ {{item.room_extrabedcharge}}/-</td>
+                                          <td>{{getTotalAmount(item.room_charge, item.extra_bed, item.room_extrabedcharge)}}</td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+
+                      </div>
+                      <div class="row">
+                          <div class="col-12 px-4">
+                              <a (click)="next()">
+                                  <button class="add-booking">Next</button></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- end Payment Details -->
+
+  </div>
+</div>

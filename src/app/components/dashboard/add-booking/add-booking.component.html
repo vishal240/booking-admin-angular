@@ -1,0 +1,50 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title mt-4">Add Booking</div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="propertyList.length==0">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body shadow-lg">
+            <p>Records not found.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="propertyList.length>0">
+      <div class="col-xl-4 col-md-6 col-12" *ngFor="let item of propertyList; let i=index">
+        <div class="info-box ">
+          <div class="row paddings">
+            <div class="col-5" style="background-image:url(assets/img/b1.jpg);background-size:cover;border-radius: 25px;"
+            *ngIf="item.property_images.length==0">
+            </div>
+            <div class="col-5" style="background-image:url({{item.property_image_path}}{{item.property_images[0].image_name}});background-size:cover;border-radius: 25px;"
+            *ngIf="item.property_images.length>0
+            ">
+            </div>
+            <div class="col-7 py-3">
+              <span class="info-box-text">{{item.property_name | titlecase}}</span>
+              <span class="info-box-number">Total Rooms : {{item.total_rooms}}</span><br>
+              <span class="info-box-number">Available Rooms : {{item.available_rooms }}</span><br>
+              <a routerLink="/app/booking-details/{{item.property_uid }}">
+                <button class="add-booking mt-2" >Add Booking</button></a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <app-pagination [totalRecords]="totalPages" [recordsPerPage]="10"
+              (onPageChange)="displayActivePage($event)">
+        </app-pagination>
+      </div>
+    </div>
+  </div>
+</div>

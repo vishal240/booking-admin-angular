@@ -1,0 +1,86 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+      <div class="page-bar">
+          <div class="page-title-breadcrumb">
+              <div class=" pull-left">
+                  <div class="page-title mt-4">Bookings</div>
+              </div>
+              <ol class="breadcrumb page-breadcrumb pull-right">
+                  <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index.html">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                  </li>
+                  <li class="active">Bookings</li>
+              </ol>
+          </div>
+      </div>
+      <!-- start widget -->
+      <div class="state-overview">
+
+      </div>
+
+      <!-- start Payment Details -->
+      <div class="row">
+          <div class="col-md-12 col-sm-12">
+              <div class="card  card-box">
+                  <div class="card-head">
+                      <header>
+                          <a routerLink="/app/add-booking"><button class="add-booking">Add Booking</button></a>
+                      </header>
+                  </div>
+                  <div class="row mt-4 m-4" *ngIf="bookingList.length==0">
+                    <div class="col-md-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <b>Records not found</b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body" *ngIf="bookingList.length>0">
+                      <div class="table-scrollable">
+                          <table class="table table-hover table-checkable order-column full-width" id="example4">
+                              <thead>
+                                  <tr>
+                                      <th>Sr No</th>
+                                      <th class="center">Name</th>
+                                      <th class="center">ITS</th>
+                                      <th>Building</th>
+                                      <th class="center">Check In</th>
+                                      <th class="center">Check Out</th>
+                                      <th>Status</th>
+                                      <th class="center">Details</th>
+                                      <th class="center">Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="odd gradeX" *ngFor="let item of bookingList; let i=index">
+                                      <td>{{i+1}}</td>
+                                      <td>{{item.customer_fname | titlecase}} {{item.customer_mname | titlecase}} {{item.customer_lname | titlecase}}</td>
+                                      <td class="center">{{item.customer_its}}</td>
+                                      <td>{{item.property_name | titlecase}}</td>
+                                      <td class="center">{{item.booking_checkin}}</td>
+                                      <td class="center">{{item.booking_checkout}}</td>
+                                      <td>
+                                        <span *ngIf="item.booking_status=='booked'" class="label-success">Confirmed</span>
+                                        <span *ngIf="item.booking_status=='cancelled'" class="label-danger">Cancelled</span>
+                                      </td>
+                                      <td>
+                                        <a (click)="gotoDetails(item, item.booking_uid)">
+                                          <button class="add-booking">View Details</button>
+                                        </a>
+                                      </td>
+                                      <td class="center">
+
+                                          <a class="btn btn-tbl-delete btn-xs" *ngIf="item.booking_status=='booked'" (click)="deleteProperty(item.booking_uid)">
+                                              <i class="fa fa-trash-o "></i>
+                                          </a>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

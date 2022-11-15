@@ -1,0 +1,147 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+      <div class="page-bar">
+          <div class="page-title-breadcrumb">
+              <div class=" pull-left">
+                  <div class="page-title mt-4"></div>
+              </div>
+              <ol class="breadcrumb page-breadcrumb pull-right">
+                  <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+                  </li>
+                  <li class="active">Booking Details</li>
+              </ol>
+          </div>
+      </div>
+      <!-- start widget -->
+
+
+      <!-- start Payment Details -->
+      <div class="row">
+          <div class="col-md-12 col-sm-12 mt-2">
+              <div class="card  card-box">
+                  <div class="card-head">
+                      <header>Booking Details</header>
+                      <div class="tools">
+                          <button class="btn btn-info p-1 px-2" (click)="printData()">PRINT</button> &nbsp;
+
+                          <button *ngIf="bookingDetails.booking_status=='booked'" class="btn btn-danger p-1 px-2" (click)="deleteProperty()">Cancel Booking</button>
+                      </div>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                          <table class="details-table" style="width: 100%;">
+                              <tr>
+                                  <td><b>Booking ID:</b> #{{bookingDetails.booking_uid}}</td>
+                                  <td><b>Date:</b> {{bookingDetails.payment_datetime | date}}</td>
+                              </tr>
+                              <tr>
+                                  <td class="pt-3"><b>Name:</b> {{bookingDetails.customer_fname | titlecase}} {{bookingDetails.customer_mname | titlecase}} {{bookingDetails.customer_lname | titlecase}}</td>
+
+                                  <td class="pt-3"><b>ITS:</b> {{bookingDetails.customer_its}}</td>
+
+                              </tr>
+                              <tr>
+                                  <td><b>Mobile No:</b> {{bookingDetails.customer_phone}}</td>
+
+                                  <td><b>Email ID:</b>{{bookingDetails.customer_email}}</td>
+
+                              </tr>
+                              <tr>
+                                  <td><b>Check In Date:</b> {{bookingDetails.booking_checkin}}</td>
+
+                                  <td><b>Check Out Date:</b> {{bookingDetails.booking_checkout}}</td>
+
+                              </tr>
+                              <tr>
+                                  <td><b>No of Room:</b> {{roomDetails.length}}</td>
+
+                                  <td><b>Room No:</b>
+                                  <span *ngFor="let item of roomDetails; let i=index">
+                                    {{item.room_number}} {{item.room_type | titlecase}},
+                                  </span>
+                                  </td>
+
+                              </tr>
+                              <tr>
+                                  <td><b>No of Persons:</b> {{bookingDetails.room_adults}}(Adult), {{bookingDetails.room_children}}(Children)</td>
+                                  <td><b>Building:</b> {{bookingDetails.property_name | titlecase }}</td>
+                              </tr>
+                              <tr>
+                                  <td><b>Stay:</b> {{diffDays}} Night</td>
+                                  <td></td>
+                              </tr>
+
+                              <tr>
+                                <td class="pt-3"><b>Room Charges</b></td>
+                                <td></td>
+                              </tr>
+                              <tr>
+                                <td colspan="2">
+                                  <table class="room-charges" style="width: 100%;">
+                                    <tr class="first-row">
+                                      <td style="text-align:left !important;"><b>Room No</b></td>
+                                      <td><b>Room Type</b></td>
+                                      <td><b>Extra Bed</b></td>
+                                      <td><b>Bed Cap</b></td>
+                                      <td><b>No of Night</b></td>
+                                      <td><b>Per Night</b></td>
+                                      <td><b>Extra Bed Charge</b></td>
+                                      <td><b>Amount</b></td>
+                                    </tr>
+                                    <tr *ngFor="let item of roomDetails; let i=index">
+                                      <td style="text-align:left !important;">{{item.room_number}}</td>
+                                      <td>{{item.room_type}}</td>
+                                      <td>{{item.extra_beds}}</td>
+                                      <td>{{item.room_bedcapacity}}</td>
+                                      <td>{{diffDays}}</td>
+                                      <td>{{item.room_charges}}/-</td>
+                                      <td>{{item.extra_bed_charges}}</td>
+                                      <td>{{getTotalAmount(item.room_charges, item.extra_beds, item.extra_bed_charges)}}/-</td>
+                                    </tr>
+                                    <tr>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>SGST(5%)</td>
+                                      <td>{{gstAmount-totalAmount}}/-</td>
+                                    </tr>
+                                    <tr>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>CGST(5%)</td>
+                                      <td>{{gstAmount-totalAmount}}/-</td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                      </td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>
+                                      </td>
+                                      <td></td>
+                                      <td><b>Total Amount</b></td>
+                                      <td><b>{{grandTotal}}/-</b></td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+
+                          </table>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- end Payment Details -->
+
+  </div>
+</div>

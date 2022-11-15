@@ -1,0 +1,77 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+              href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+          <li class="active">Guest List</li>
+        </ol>
+      </div>
+    </div>
+    <!-- start widget -->
+
+
+    <!-- start Payment Details -->
+    <div class="row">
+      <div class="col-md-12 col-sm-12 mt-2">
+        <div class="card  card-box">
+          <div class="card-head">
+            <header>Guest List</header>
+
+          </div>
+          <div class="card-body">
+            <div class="row" *ngIf="guestList.length==0">
+              <div class="col-md-12">
+                <p>Records not found.</p>
+              </div>
+            </div>
+            <div class="table-scrollable" *ngIf="guestList.length>0">
+              <table class="table table-hover table-checkable order-column full-width"
+                id="example4">
+                <thead>
+                  <tr>
+                    <th style="text-align: left !important;">Sr No</th>
+                    <th style="text-align: left !important;">Name</th>
+                    <th style="text-align: left !important;">ITS</th>
+                    <th style="text-align: left !important;">Phone</th>
+                    <!-- <th class="center">Actions</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="" *ngFor="let item of guestList; let i=index">
+                    <td style="text-align: left !important;">{{i+1}}</td>
+                    <td style="text-align: left !important;">{{item.customer_fname | titlecase}} {{item.customer_mname | titlecase}} {{item.customer_lname | titlecase}}</td>
+                    <td style="text-align: left !important;">{{item.customer_its}}</td>
+                    <td style="text-align: left !important;">{{item.customer_phone}}</td>
+
+                    <!-- <td class="center">
+                      <a href="edit_staff.html"
+                        class="btn btn-tbl-edit btn-xs">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                      <a class="btn btn-tbl-delete btn-xs">
+                        <i class="fa fa-trash-o "></i>
+                      </a>
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <app-pagination [totalRecords]="totalPages" [recordsPerPage]="10"
+              (onPageChange)="displayActivePage($event)">
+        </app-pagination>
+      </div>
+    </div>
+    <!-- end Payment Details -->
+
+  </div>
+</div>

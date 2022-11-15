@@ -1,0 +1,146 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">Edit Room Details</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+
+          <li class="active">Edit Room Details</li>
+        </ol>
+      </div>
+    </div>
+    <form [formGroup]="checkoutForm">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-box">
+
+          <div class="card-body row">
+
+            <div class="col-lg-6 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingInput" formControlName="number">
+                <label for="floatingInput">Room No <span style="color: red;">*</span></label>
+              </div>
+            </div>
+
+
+
+            <div class="col-lg-6 p-t-20">
+              <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid2" formControlName="bed_type" >
+                  <option  value="Single">
+                    Single
+                  </option>
+                  <option  value="Double">Double</option>
+                  <option  value="Quad">Quad</option>
+                  <option  value="King">King</option>
+                  <option  value="Suite">Suite</option>
+                  <option  value="Apartments">Apartments</option>
+                  <option  value="Villa">Villa</option>
+                </select>
+                <label for="floatingSelectGrid2">Bed Type <span style="color: red;">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 p-t-20">
+              <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid3" formControlName="capacity" >
+                  <option  value="1">
+                    1
+                  </option>
+                  <option  value="2">2</option>
+                  <option  value="3">3</option>
+                  <option  value="4">4</option>
+                  <option  value="5">5</option>
+                  <option  value="6">6</option>
+                  <option  value="7">7</option>
+                </select>
+                <label for="floatingSelectGrid3">Bed Capaity <span style="color: red;">*</span></label>
+              </div>
+            </div>
+
+
+            <div class="col-lg-6 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingInput2" formControlName="rent">
+                <label for="floatingInput2">Room Rent <span style="color: red;">*</span></label>
+              </div>
+            </div>
+            <div class="col-lg-6 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingInput3" formControlName="extra_bed_charge">
+                <label for="floatingInput6">Extra Bed Charges</label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput4" [specialCharacters]="[ '\-' ]" mask="000-000-0000" formControlName="phone">
+                <label for="floatingInput4">Telephone Number <span style="color: red;">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-lg-6 p-t-20">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="type" value="ac" id="flexRadioDefault1" formControlName="type">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  A/C
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="type" value="non-ac" id="flexRadioDefault2" formControlName="type">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Non A/C
+                </label>
+              </div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+              <b>Amenities :</b>
+              <p *ngFor="let item of newAmenities; let i=index">
+                {{item.amenity}}
+              </p>
+            </div>
+
+            <div class="col-lg-12 p-t-20">
+              Amenities<br>
+              <label *ngFor="let item of amenitiesType; let i=index">
+                <input type="checkbox" name="{{item.amenity_uid}}" value="{{item.amenity_uid}}" (change)="checkCheckBoxvalue($event, item.amenity, item.amenity_uid, i)"> {{item.amenity}}</label> &nbsp;
+
+            </div>
+
+            <div class="col-lg-12 p-t-20">
+              <ngx-dropzone (change)="onSelect($event)">
+                <ngx-dropzone-label>Upload Room Photos</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+              </ngx-dropzone>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-3" *ngFor="let item of propertyDetails?.images; let i=index">
+                <div class="card">
+                  <div class="card-body">
+                    <img *ngIf="propertyDetails?.images.length>0" src="https://estate.friendswebsolutions.com/api/uploads/room/{{item.image_name}}" alt="{{i}}" style="height:160px;width: -webkit-fill-available">
+                  </div>
+                  <div class="card-footer" style="text-align: center;">
+                    <button (click)="deleteProperty(item.image_uid)" class="btn btn-danger">Remove</button>
+                  </div>
+                </div>
+              </div>
+             </div>
+            <div class="col-lg-12 p-t-20 text-center">
+              <button type="button" (click)="submit()" [disabled]="isUpload"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>
+</div>

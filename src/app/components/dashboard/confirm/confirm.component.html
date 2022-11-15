@@ -1,0 +1,151 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">Booking Details</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+          <li><a class="parent-item" href="#">Burhani Villa</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+          <li class="active">Confirm Booking</li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-box">
+          <div class="card-head">
+            <header class="text-success">Your Booking is Confirmed</header>
+                                    <div class="tools">
+                                        <button class="btn btn-info p-1 px-2" (click)="printData()">PRINT</button>
+
+                                    </div>
+          </div>
+          <div class="card-body row">
+            <table class="details-table" style="width: 100%;">
+              <tr>
+                <td><b>Voucher No:</b> #{{booking_uid}}</td>
+                <td><b>Date:</b> {{currentDate | date}}</td>
+              </tr>
+              <tr>
+                <td class="pt-3"><b>Name:</b> {{current_customer.fname | titlecase}} {{current_customer.mname | titlecase}} {{current_customer.lname | titlecase}}</td>
+
+                <td class="pt-3"><b>ITS:</b> {{current_customer.customer_its}}</td>
+
+              </tr>
+              <tr>
+                <td><b>Mobile No:</b> {{current_customer.phone}}</td>
+
+                <td><b>Email:</b> {{current_customer.email}}</td>
+
+              </tr>
+
+
+              <tr>
+                <td><b>No of Room:</b> {{currentRoom.length}}</td>
+
+                <td><b>Room No:</b> <span *ngFor="let item of currentRoom; let i=index">{{item.room_number}}, </span></td>
+
+              </tr>
+              <tr>
+                <td><b>Check In Date:</b> {{currentCheckDetails.check_in}}</td>
+
+                <td><b>Check Out Date:</b> {{currentCheckDetails.check_out}}</td>
+
+              </tr>
+              <tr>
+                <td><b>No of Persons:</b> {{currentCheckDetails.adults}} (Adult), {{currentCheckDetails.children}} (Children)</td>
+                <td><b>Stay:</b> {{diffDays}} Night</td>
+              </tr>
+
+              <tr>
+                <td class="pt-3"><b>Room Charges</b></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <table class="room-charges" style="width: 100%;">
+                    <tr class="first-row">
+                      <td style="text-align:left !important;"><b>Room No</b></td>
+                      <td><b>Room Type</b></td>
+                      <td><b>Extra Bed</b></td>
+                      <td><b>Bed Cap</b></td>
+                      <td><b>No of Night</b></td>
+                      <td><b>Per Night</b></td>
+                      <td><b>Extra Bed Charge</b></td>
+                      <td><b>Amount</b></td>
+                    </tr>
+                    <tr *ngFor="let item of currentRoom; let i=index">
+                      <td style="text-align:left !important;">{{item.room_number}}</td>
+                      <td>{{item.room_type}}</td>
+                      <td>{{item.extra_bed}}</td>
+                      <td>{{item.room_bedcapacity}}</td>
+                      <td>{{diffDays}}</td>
+                      <td>{{item.room_charge}}/-</td>
+                      <td>{{item.room_extrabedcharge}}</td>
+                      <td>{{getTotalAmount(item.room_charge, item.extra_bed, item.room_extrabedcharge)}}/-</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>SGST(5%)</td>
+                      <td>{{gstAmount-totalAmount}}/-</td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>CGST(5%)</td>
+                      <td>{{gstAmount-totalAmount}}/-</td>
+                    </tr>
+                    <tr>
+                      <td>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                      </td>
+                      <td></td>
+                      <td><b>Total Amount</b></td>
+                      <td><b>{{grandTotal}}/-</b></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <b>Payment Method</b>
+                      </td>
+                      <td>
+                        <select name="" id="">
+                          <option>Online</option>
+                          <option>Cash</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

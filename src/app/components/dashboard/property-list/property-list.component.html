@@ -1,0 +1,88 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+      <div class="page-bar">
+          <div class="page-title-breadcrumb">
+              <div class=" pull-left">
+                  <div class="page-title mt-4">Property List</div>
+              </div>
+
+          </div>
+          <ol class="breadcrumb page-breadcrumb pull-right">
+              <li><a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+              </li>
+
+              <li class="active">Property List</li>
+          </ol>
+      </div>
+
+
+
+
+      <!-- start widget -->
+
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card card-box">
+                  <div class="card-head">
+                      <header>
+                          <a routerLink="/app/add-property"><button class="add-booking">Add Property</button></a>
+                      </header>
+                  </div>
+                  <div class="card-body ">
+                    <div class="row" *ngIf="propertyList.length==0">
+                      <div class="col-md-12">
+                        No records found.
+                      </div>
+                    </div>
+                      <div class="table-scrollable" *ngIf="propertyList.length>0">
+                          <table class="table table-hover table-checkable order-column full-width" id="example4">
+                              <thead>
+                                  <tr>
+                                      <th class="center">Sr No</th>
+
+                                      <th class="center">Property Name</th>
+                                      <th class="center">Property Address</th>
+                                      <th class="center">Status</th>
+                                      <th class="center">View Details</th>
+                                      <th class="center">Action </th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="odd gradeX" *ngFor="let item of propertyList; let i=index">
+                                      <td class="center">{{i+1}}</td>
+
+                                      <td class="center">{{item.property_name | titlecase}}</td>
+                                    <td class="center">{{item.property_address | titlecase}}</td>
+                                    <td class="center">
+                                      <button *ngIf="item.property_status=='1'" (click)="inactive(item.property_uid)" class="btn btn-primary" >Active</button>
+                                      <button *ngIf="item.property_status=='0'" (click)="activate(item.property_uid)" class="btn btn-danger" >Inactive</button>
+                                    </td>
+                                      <td><a routerLink="/app/property-details/{{item.property_uid}}"><button class="add-booking">View Details</button></a></td>
+                                      <td class="center">
+                                          <a routerLink="/app/edit-property/{{item.property_uid}}" class="btn btn-tbl-edit btn-xs">
+                                              <i class="fa fa-pencil"></i>
+                                          </a>
+                                          <a class="btn btn-tbl-delete btn-xs" (click)="deleteProperty(item.property_uid)">
+                                              <i class="fa fa-trash-o "></i>
+                                          </a>
+                                      </td>
+                                  </tr>
+
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <app-pagination [totalRecords]="totalPages" [recordsPerPage]="10"
+                (onPageChange)="displayActivePage($event)">
+          </app-pagination>
+        </div>
+      </div>
+      <!-- start Payment Details -->
+
+  </div>
+</div>

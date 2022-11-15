@@ -1,0 +1,82 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">User Profile</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+              href="index.html">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+
+          <li class="active">User Profile</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card  card-box shadow ">
+      <div class="card-body">
+        <form [formGroup]="checkoutForm">
+          <div class="row">
+            <div class="col-md-4 mt-3">
+              <label>First Name <span style="color: red;">*</span></label>
+              <input type="text" class="input" placeholder="First Name" formControlName="admin_fname">
+            </div>
+            <div class="col-md-4 mt-3">
+              <label>Middle Name</label>
+              <input type="text" class="input" placeholder="Middle Name" formControlName="admin_mname">
+            </div>
+            <div class="col-md-4 mt-3">
+              <label>Last Name <span style="color: red;">*</span></label>
+              <input type="text" class="input" placeholder="Last Name" formControlName="admin_lname">
+            </div>
+            <div class="col-md-4  mt-3">
+              <label>Email <span style="color: red;">*</span></label>
+              <input type="text" class="input" placeholder="Email ID" formControlName="admin_email">
+            </div>
+            <div class="col-md-4  mt-3">
+              <label>Phone Number <span style="color: red;">*</span></label>
+              <input type="text" class="input" placeholder="Phone Number" formControlName="admin_phone">
+            </div>
+            <div class="col-md-4  mt-3">
+              <label>ITS <span style="color: red;">*</span></label>
+              <input type="text" class="input" placeholder="ITS" formControlName="admin_its">
+            </div>
+            <div class="col-md-12 mt-3">
+              <button class="add-booking" type="button" (click)="submit()">Edit Details</button>
+            </div>
+          </div>
+        </form>
+        <form [formGroup]="checkoutForm2">
+        <div class="row">
+          <div class="col-md-12 mt-4">
+            <h4><b>Change Password</b></h4>
+          </div>
+          <div class="col-md-4  ">
+            <label>Current Password <span style="color: red;">*</span></label>
+            <input type="text" class="input" placeholder="Current Password" formControlName="current_password">
+          </div>
+          <div class="col-md-4  ">
+            <label>New Password <span style="color: red;">*</span></label>
+            <input type="text" class="input" placeholder="New Password" formControlName="password">
+          </div>
+          <div class="col-md-4  ">
+            <label>Confirm Password <span style="color: red;">*</span></label>
+            <input type="text" class="input" placeholder="Confirm Password" formControlName="confirm_password">
+          </div>
+          <div class="col-md-4  mt-3">
+            <button class="add-booking" type="button" (click)="changePassword()">Change</button>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- end page content -->
+  <!-- start chat sidebar -->
+
+  <!-- end chat sidebar -->
+</div>

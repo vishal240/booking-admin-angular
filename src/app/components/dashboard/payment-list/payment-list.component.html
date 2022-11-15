@@ -1,0 +1,71 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+              href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+          <li class="active">Payments List</li>
+        </ol>
+      </div>
+    </div>
+    <!-- start widget -->
+
+
+    <!-- start Payment Details -->
+    <div class="row">
+      <div class="col-md-12 col-sm-12 mt-2">
+        <div class="card  card-box shadow h-100">
+          <div class="card-head">
+            <header>Payment List</header>
+          </div>
+          <div class="row" *ngIf="paymentList.length==0">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <b>Records not found.</b>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="paymentList.length>0">
+            <div class="table-scrollable">
+              <table class="table table-hover table-checkable order-column full-width"
+                id="example4">
+                <thead>
+                  <tr>
+                    <th class="center">Sr No</th>
+                    <th class="center">Full Name</th>
+                    <th class="center">Booking ID</th>
+                    <th class="center">Amount</th>
+                    <th class="center">Status</th>
+                    <th class="center">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="odd gradeX" *ngFor="let item of paymentList; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.customer_fname | titlecase}} {{item.customer_mname | titlecase}} {{item.customer_lname | titlecase}}</td>
+                    <td class="center"><a >#{{item.booking_uid}}</a></td>
+                    <td class="center">₹{{item.payment_totalamount}}</td>
+                    <td>
+                      <span class="label-success" *ngIf="item.payment_status=='success'">PAID</span>
+                      <span class="label-danger" *ngIf="item.payment_status=='returned'">Fail</span>
+                    </td>
+                    <td><button class="add-booking">Print</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- end Payment Details -->
+
+  </div>
+</div>

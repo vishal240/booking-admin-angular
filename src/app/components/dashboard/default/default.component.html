@@ -1,0 +1,96 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title mt-4">Dashboard</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- <div class="col-md-12">
+        <button class="btn btn-primary" (click)="pay()">Pay</button>
+      </div> -->
+      <div class="col-xl-4 col-md-6 col-12">
+        <a href="burhani.html">
+          <div class="info-box bg-blue p-4">
+            <span class="info-box-icon push-bottom"><i class="material-icons">style</i></span>
+            <div class="info-box-content">
+              <span class="info-box-text font-23">Bookings</span>
+              <span class="info-box-number font-23">{{dashboardDtails?.bookings}}</span><br>
+
+              <div class="progress">
+                <div class="progress-bar width-60"></div>
+              </div>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </a>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+
+      <!-- /.col -->
+      <div class="col-xl-4 col-md-6 col-12">
+        <div class="info-box bg-success p-4">
+          <span class="info-box-icon push-bottom"><i class="material-icons">style</i></span>
+          <div class="info-box-content">
+            <span class="info-box-text font-23">Rooms Available</span>
+            <span class="info-box-number font-23">{{dashboardDtails?.available_rooms}}</span><br>
+
+            <div class="progress">
+              <div class="progress-bar width-80"></div>
+            </div>
+
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-xl-4 col-md-6 col-12">
+        <div class="info-box bg-orange p-4">
+          <span class="info-box-icon push-bottom"><i class="material-icons">style</i></span>
+          <div class="info-box-content">
+            <span class="info-box-text font-23">Total Earnings</span>
+            <span class="info-box-number font-23">₹ {{dashboardDtails?.total_earnings}}</span><br>
+
+            <div class="progress">
+              <div class="progress-bar width-60"></div>
+            </div>
+
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+    </div>
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="card  card-box shadow h-100">
+          <div class="card-head">
+            <header>Booking Status</header>
+          </div>
+          <div class="card-body">
+            <div id="chart"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="card  card-box shadow h-100">
+          <div class="card-head">
+            <header>Reservation Statistic</header>
+          </div>
+          <div class="card-body">
+            <div id="chart2"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

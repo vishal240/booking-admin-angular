@@ -1,0 +1,76 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">Person Details</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li><a class="parent-item" routerLink="/">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+          <!-- <li><a class="parent-item">Burhani Villa</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li> -->
+          <li class="active">Add Booking</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-box">
+          <div class="card-head">
+            <header>Person Details</header>
+          </div>
+          <form [formGroup]="checkoutForm" class="card-body">
+          <div class="row">
+
+            <div class="col-lg-6 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" #input id="floatingInput" formControlName="customer_its">
+                <label for="floatingInput">ITS <span style="color: red;">*</span></label>
+              </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-4 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  id="floatingInput2" formControlName="fname">
+                <label for="floatingInput2">First Name <span style="color: red;">*</span></label>
+              </div>
+            </div>
+            <div class="col-md-4 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  id="floatingInput3" formControlName="mname">
+                <label for="floatingInput3">Middle Name <span style="color: red;">*</span></label>
+              </div>
+            </div>
+            <div class="col-md-4 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  id="floatingInput4" formControlName="lname">
+                <label for="floatingInput4">Last Name <span style="color: red;">*</span></label>
+              </div>
+            </div>
+            <div class="col-md-6 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control"  id="floatingInput5" [specialCharacters]="[ '\-' ]" mask="000-000-0000" formControlName="phone">
+                <label for="floatingInput5">Mobile No. <span style="color: red;">*</span></label>
+              </div>
+            </div>
+
+            <div class="col-md-6 p-t-20">
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control"  id="floatingInput6" formControlName="email">
+                <label for="floatingInput6">Email ID <span style="color: red;">*</span></label>
+              </div>
+            </div>
+            <div class="col-lg-12 p-t-20 text-center">
+              <a (click)="submit()"><button type="button" class="add-booking-3">Next</button></a>
+            </div>
+
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

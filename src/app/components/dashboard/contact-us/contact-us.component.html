@@ -1,0 +1,36 @@
+<div class="page-content-wrapper">
+  <div class="page-content">
+    <div class="page-bar">
+      <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+          <div class="page-title">Contact Us</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+          <li>&nbsp;<a class="parent-item"
+              href="index.html">Dashboard</a>&nbsp;<i class="fa fa-angle-right"></i>
+          </li>
+          <li class="active">Contact Us</li>
+        </ol>
+      </div>
+    </div>
+    <!-- add content here -->
+    <div class="row" *ngIf="guestList.length==0">
+      <div class="col-12">
+        <p>Records not found</p>
+      </div>
+    </div>
+    <div class="row" *ngIf="guestList.length>0">
+      <div class="col-6" *ngFor="let item of guestList; let i=index">
+        <div class="card  card-box shadow">
+          <div class="card-body">
+            <span><b>Name:</b> {{item.contact_name | titlecase}}</span>
+            <span class="pt-2 d-block"><b>Email:</b> {{item.contact_email}}</span>
+            <span class="pt-2 d-block"><b>Message:</b> {{item.contact_message}}</span>
+            <!-- <button class="add-booking mt-2">Reply</button> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
